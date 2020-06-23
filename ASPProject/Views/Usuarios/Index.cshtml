@@ -1,0 +1,69 @@
+﻿@model IEnumerable<Conexion.Models.Usuario>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.NombreUsuario)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ApellidoUsuario)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TelefonoUsuario)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DireccionUsuario)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RutUsuario)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FechaRegistro)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CorreoUsuario)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.NombreUsuario)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ApellidoUsuario)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TelefonoUsuario)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DireccionUsuario)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RutUsuario)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FechaRegistro)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CorreoUsuario)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.IdUsuario }) |
+            @Html.ActionLink("Details", "Details", new { id=item.IdUsuario }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.IdUsuario })
+        </td>
+    </tr>
+}
+
+</table>

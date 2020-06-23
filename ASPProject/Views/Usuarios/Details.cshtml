@@ -1,0 +1,74 @@
+﻿@model Conexion.Models.Usuario
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Usuario</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.NombreUsuario)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NombreUsuario)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ApellidoUsuario)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ApellidoUsuario)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TelefonoUsuario)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TelefonoUsuario)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DireccionUsuario)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DireccionUsuario)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RutUsuario)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RutUsuario)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FechaRegistro)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FechaRegistro)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CorreoUsuario)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CorreoUsuario)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.IdUsuario }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

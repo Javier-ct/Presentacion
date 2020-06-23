@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="6fcfc6b2d1d4471b89749a0b513080db" Name="Diagram1" ZoomLevel="85">
+        <EntityTypeShape EntityType="ProyectoInacapModel.Usuario" Width="1.5" PointX="0.75" PointY="2.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProyectoInacapModel.Trabajador" Width="1.5" PointX="3" PointY="4.75" />
+        <AssociationConnector Association="ProyectoInacapModel.FK_Trabajador_Usuario" />
+        <EntityTypeShape EntityType="ProyectoInacapModel.Reporte" Width="1.5" PointX="7.5" PointY="3.125" />
+        <EntityTypeShape EntityType="ProyectoInacapModel.Bicicleta" Width="1.5" PointX="3" PointY="0.75" />
+        <AssociationConnector Association="ProyectoInacapModel.FK_Bicicleta_Usuario" />
+        <EntityTypeShape EntityType="ProyectoInacapModel.Estacionamiento" Width="1.5" PointX="5.25" PointY="2.375" />
+        <AssociationConnector Association="ProyectoInacapModel.FK_Estacionamiento_Bicicleta" />
+        <AssociationConnector Association="ProyectoInacapModel.FK_Estacionamiento_Trabajador" />
+        <AssociationConnector Association="ProyectoInacapModel.FK_Reporte_Estacionamiento" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

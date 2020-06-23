@@ -1,0 +1,117 @@
+﻿@model IEnumerable<Conexion.Models.Bicicleta>
+
+@{
+                /**/
+
+                /**/
+
+                ViewBag.Title = "Index";
+}
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="~/Content/css/main.css">
+    <link rel="stylesheet" href="~/Content/css/normalize.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="icon" href="~/Content/assets/img/favicon.ico">
+    <link rel="stylesheet" href="~/Content/css/main.css">
+    <script src="https://use.fontawesome.com/releases/v5.13.0/js/all.js" crossorigin="anonymous"></script>
+
+
+    <title>Index</title>
+</head>
+
+
+
+
+
+
+
+
+
+
+<body>
+
+    <div class="burbuja">
+        <div class="burbuja2"></div>
+    </div>
+
+    <br />
+    <br />
+    <br />
+    <div class="text-center">
+        <button type="button" class="btn btn-outline-primary "> @Html.ActionLink("Crear nueva Bicicleta", "Create")</button>
+
+    </div>
+
+
+    <div class="text-center container">
+
+
+        <table class="table   bg-white container  container-center border">
+            <tr>
+
+               
+
+
+
+                <th>
+                    @Html.DisplayNameFor(model => model.Marca)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Color)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Modelo)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ImagenBicicleta)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Usuario.NombreUsuario)
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+
+
+                   
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Marca)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Color)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Modelo)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ImagenBicicleta)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Usuario.NombreUsuario)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Editar", "Edit", new { id = item.IdBicicleta }) |
+                        @Html.ActionLink("Detalles", "Details", new { id = item.IdBicicleta }) |
+                        @Html.ActionLink("Eliminar", "Delete", new { id = item.IdBicicleta })
+                    </td>
+                </tr>
+            }
+
+        </table>
+
+    </div>
+
+
+
+
+
+
+
+</body>

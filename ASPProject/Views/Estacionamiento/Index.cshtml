@@ -1,0 +1,76 @@
+﻿@model IEnumerable<Conexion.Models.Estacionamiento>
+
+@{
+    ViewBag.Title = "Index";
+
+}
+
+<h2>Index</h2>
+
+
+
+ 
+
+<p class="text-center">
+    @Html.ActionLink("Crear Nuevo Estacionamiento", "Create")
+</p>
+
+
+
+
+
+
+<table class="table container">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.LugarEstacionamiento)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.HoraEntrada)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.HoraSalida)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EstacionamientoOcupado)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Bicicleta.IdBicicleta)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Trabajador.Nombre)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.LugarEstacionamiento)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HoraEntrada)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HoraSalida)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EstacionamientoOcupado)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Bicicleta.IdBicicleta)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Trabajador.Nombre)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.IdEstacionamiento }) |
+                @Html.ActionLink("Details", "Details", new { id = item.IdEstacionamiento }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.IdEstacionamiento })
+            </td>
+        </tr>
+    }
+
+</table>
+

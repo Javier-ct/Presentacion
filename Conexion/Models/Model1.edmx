@@ -1,0 +1,389 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="ProyectoInacapModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Bicicleta">
+          <Key>
+            <PropertyRef Name="IdBicicleta" />
+          </Key>
+          <Property Name="IdBicicleta" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Marca" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Color" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Modelo" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ImagenBicicleta" Type="varbinary(max)" />
+          <Property Name="idUsuario" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Estacionamiento">
+          <Key>
+            <PropertyRef Name="IdEstacionamiento" />
+          </Key>
+          <Property Name="IdEstacionamiento" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LugarEstacionamiento" Type="int" Nullable="false" />
+          <Property Name="HoraEntrada" Type="datetime" Nullable="false" />
+          <Property Name="HoraSalida" Type="datetime" />
+          <Property Name="EstacionamientoOcupado" Type="bit" Nullable="false" />
+          <Property Name="idBicicleta" Type="int" Nullable="false" />
+          <Property Name="idTrabajador" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Reporte">
+          <Key>
+            <PropertyRef Name="IdReporte" />
+          </Key>
+          <Property Name="IdReporte" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FechaReporte" Type="date" Nullable="false" />
+          <Property Name="idEstacionamiento" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Trabajador">
+          <Key>
+            <PropertyRef Name="IdTrabajador" />
+          </Key>
+          <Property Name="IdTrabajador" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Cargo" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="idUsuario" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="IdUsuario" />
+          </Key>
+          <Property Name="IdUsuario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NombreUsuario" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ApellidoUsuario" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="TelefonoUsuario" Type="int" Nullable="false" />
+          <Property Name="DireccionUsuario" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="RutUsuario" Type="int" Nullable="false" />
+          <Property Name="FechaRegistro" Type="date" Nullable="false" />
+          <Property Name="CorreoUsuario" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Bicicleta_Usuario">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="Bicicleta" Type="Self.Bicicleta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IdUsuario" />
+            </Principal>
+            <Dependent Role="Bicicleta">
+              <PropertyRef Name="idUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Estacionamiento_Bicicleta">
+          <End Role="Bicicleta" Type="Self.Bicicleta" Multiplicity="1" />
+          <End Role="Estacionamiento" Type="Self.Estacionamiento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Bicicleta">
+              <PropertyRef Name="IdBicicleta" />
+            </Principal>
+            <Dependent Role="Estacionamiento">
+              <PropertyRef Name="idBicicleta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Estacionamiento_Trabajador">
+          <End Role="Trabajador" Type="Self.Trabajador" Multiplicity="1" />
+          <End Role="Estacionamiento" Type="Self.Estacionamiento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Trabajador">
+              <PropertyRef Name="IdTrabajador" />
+            </Principal>
+            <Dependent Role="Estacionamiento">
+              <PropertyRef Name="idTrabajador" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Reporte_Estacionamiento">
+          <End Role="Estacionamiento" Type="Self.Estacionamiento" Multiplicity="1" />
+          <End Role="Reporte" Type="Self.Reporte" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estacionamiento">
+              <PropertyRef Name="IdEstacionamiento" />
+            </Principal>
+            <Dependent Role="Reporte">
+              <PropertyRef Name="idEstacionamiento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Trabajador_Usuario">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="Trabajador" Type="Self.Trabajador" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IdUsuario" />
+            </Principal>
+            <Dependent Role="Trabajador">
+              <PropertyRef Name="idUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ProyectoInacapModelStoreContainer">
+          <EntitySet Name="Bicicleta" EntityType="Self.Bicicleta" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Estacionamiento" EntityType="Self.Estacionamiento" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Reporte" EntityType="Self.Reporte" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Trabajador" EntityType="Self.Trabajador" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Bicicleta_Usuario" Association="Self.FK_Bicicleta_Usuario">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Bicicleta" EntitySet="Bicicleta" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Estacionamiento_Bicicleta" Association="Self.FK_Estacionamiento_Bicicleta">
+            <End Role="Bicicleta" EntitySet="Bicicleta" />
+            <End Role="Estacionamiento" EntitySet="Estacionamiento" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Estacionamiento_Trabajador" Association="Self.FK_Estacionamiento_Trabajador">
+            <End Role="Trabajador" EntitySet="Trabajador" />
+            <End Role="Estacionamiento" EntitySet="Estacionamiento" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reporte_Estacionamiento" Association="Self.FK_Reporte_Estacionamiento">
+            <End Role="Estacionamiento" EntitySet="Estacionamiento" />
+            <End Role="Reporte" EntitySet="Reporte" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Trabajador_Usuario" Association="Self.FK_Trabajador_Usuario">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Trabajador" EntitySet="Trabajador" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ProyectoInacapModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="IdUsuario" />
+          </Key>
+          <Property Name="IdUsuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NombreUsuario" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ApellidoUsuario" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TelefonoUsuario" Type="Int32" Nullable="false" />
+          <Property Name="DireccionUsuario" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="RutUsuario" Type="Int32" Nullable="false" />
+          <Property Name="FechaRegistro" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="CorreoUsuario" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Trabajador" Relationship="ProyectoInacapModel.FK_Trabajador_Usuario" FromRole="Usuario" ToRole="Trabajador" />
+          <NavigationProperty Name="Bicicleta" Relationship="ProyectoInacapModel.FK_Bicicleta_Usuario" FromRole="Usuario" ToRole="Bicicleta" />
+        </EntityType>
+        <EntityContainer Name="ProyectoInacapEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Usuario" EntityType="Self.Usuario" />
+          <EntitySet Name="Trabajador" EntityType="ProyectoInacapModel.Trabajador" />
+          <AssociationSet Name="FK_Trabajador_Usuario" Association="ProyectoInacapModel.FK_Trabajador_Usuario">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Trabajador" EntitySet="Trabajador" />
+          </AssociationSet>
+          <EntitySet Name="Reporte" EntityType="ProyectoInacapModel.Reporte" />
+          <EntitySet Name="Bicicleta" EntityType="ProyectoInacapModel.Bicicleta" />
+          <AssociationSet Name="FK_Bicicleta_Usuario" Association="ProyectoInacapModel.FK_Bicicleta_Usuario">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Bicicleta" EntitySet="Bicicleta" />
+          </AssociationSet>
+          <EntitySet Name="Estacionamiento" EntityType="ProyectoInacapModel.Estacionamiento" />
+          <AssociationSet Name="FK_Estacionamiento_Bicicleta" Association="ProyectoInacapModel.FK_Estacionamiento_Bicicleta">
+            <End Role="Bicicleta" EntitySet="Bicicleta" />
+            <End Role="Estacionamiento" EntitySet="Estacionamiento" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Estacionamiento_Trabajador" Association="ProyectoInacapModel.FK_Estacionamiento_Trabajador">
+            <End Role="Trabajador" EntitySet="Trabajador" />
+            <End Role="Estacionamiento" EntitySet="Estacionamiento" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reporte_Estacionamiento" Association="ProyectoInacapModel.FK_Reporte_Estacionamiento">
+            <End Role="Estacionamiento" EntitySet="Estacionamiento" />
+            <End Role="Reporte" EntitySet="Reporte" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Trabajador">
+          <Key>
+            <PropertyRef Name="IdTrabajador" />
+          </Key>
+          <Property Name="IdTrabajador" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Cargo" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="idUsuario" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Usuario" Relationship="ProyectoInacapModel.FK_Trabajador_Usuario" FromRole="Trabajador" ToRole="Usuario" />
+          <NavigationProperty Name="Estacionamiento" Relationship="ProyectoInacapModel.FK_Estacionamiento_Trabajador" FromRole="Trabajador" ToRole="Estacionamiento" />
+        </EntityType>
+        <Association Name="FK_Trabajador_Usuario">
+          <End Type="ProyectoInacapModel.Usuario" Role="Usuario" Multiplicity="1" />
+          <End Type="ProyectoInacapModel.Trabajador" Role="Trabajador" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IdUsuario" />
+            </Principal>
+            <Dependent Role="Trabajador">
+              <PropertyRef Name="idUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Reporte">
+          <Key>
+            <PropertyRef Name="IdReporte" />
+          </Key>
+          <Property Name="IdReporte" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FechaReporte" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="idEstacionamiento" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Estacionamiento" Relationship="ProyectoInacapModel.FK_Reporte_Estacionamiento" FromRole="Reporte" ToRole="Estacionamiento" />
+        </EntityType>
+        <EntityType Name="Bicicleta">
+          <Key>
+            <PropertyRef Name="IdBicicleta" />
+          </Key>
+          <Property Name="IdBicicleta" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Marca" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Color" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Modelo" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ImagenBicicleta" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="idUsuario" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Usuario" Relationship="ProyectoInacapModel.FK_Bicicleta_Usuario" FromRole="Bicicleta" ToRole="Usuario" />
+          <NavigationProperty Name="Estacionamiento" Relationship="ProyectoInacapModel.FK_Estacionamiento_Bicicleta" FromRole="Bicicleta" ToRole="Estacionamiento" />
+        </EntityType>
+        <Association Name="FK_Bicicleta_Usuario">
+          <End Type="ProyectoInacapModel.Usuario" Role="Usuario" Multiplicity="1" />
+          <End Type="ProyectoInacapModel.Bicicleta" Role="Bicicleta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IdUsuario" />
+            </Principal>
+            <Dependent Role="Bicicleta">
+              <PropertyRef Name="idUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Estacionamiento">
+          <Key>
+            <PropertyRef Name="IdEstacionamiento" />
+          </Key>
+          <Property Name="IdEstacionamiento" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LugarEstacionamiento" Type="Int32" Nullable="false" />
+          <Property Name="HoraEntrada" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="HoraSalida" Type="DateTime" Precision="3" />
+          <Property Name="EstacionamientoOcupado" Type="Boolean" Nullable="false" />
+          <Property Name="idBicicleta" Type="Int32" Nullable="false" />
+          <Property Name="idTrabajador" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Bicicleta" Relationship="ProyectoInacapModel.FK_Estacionamiento_Bicicleta" FromRole="Estacionamiento" ToRole="Bicicleta" />
+          <NavigationProperty Name="Trabajador" Relationship="ProyectoInacapModel.FK_Estacionamiento_Trabajador" FromRole="Estacionamiento" ToRole="Trabajador" />
+          <NavigationProperty Name="Reporte" Relationship="ProyectoInacapModel.FK_Reporte_Estacionamiento" FromRole="Estacionamiento" ToRole="Reporte" />
+        </EntityType>
+        <Association Name="FK_Estacionamiento_Bicicleta">
+          <End Type="ProyectoInacapModel.Bicicleta" Role="Bicicleta" Multiplicity="1" />
+          <End Type="ProyectoInacapModel.Estacionamiento" Role="Estacionamiento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Bicicleta">
+              <PropertyRef Name="IdBicicleta" />
+            </Principal>
+            <Dependent Role="Estacionamiento">
+              <PropertyRef Name="idBicicleta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Estacionamiento_Trabajador">
+          <End Type="ProyectoInacapModel.Trabajador" Role="Trabajador" Multiplicity="1" />
+          <End Type="ProyectoInacapModel.Estacionamiento" Role="Estacionamiento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Trabajador">
+              <PropertyRef Name="IdTrabajador" />
+            </Principal>
+            <Dependent Role="Estacionamiento">
+              <PropertyRef Name="idTrabajador" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Reporte_Estacionamiento">
+          <End Type="ProyectoInacapModel.Estacionamiento" Role="Estacionamiento" Multiplicity="1" />
+          <End Type="ProyectoInacapModel.Reporte" Role="Reporte" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estacionamiento">
+              <PropertyRef Name="IdEstacionamiento" />
+            </Principal>
+            <Dependent Role="Reporte">
+              <PropertyRef Name="idEstacionamiento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ProyectoInacapModelStoreContainer" CdmEntityContainer="ProyectoInacapEntities">
+          <EntitySetMapping Name="Usuario">
+            <EntityTypeMapping TypeName="ProyectoInacapModel.Usuario">
+              <MappingFragment StoreEntitySet="Usuario">
+                <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+                <ScalarProperty Name="NombreUsuario" ColumnName="NombreUsuario" />
+                <ScalarProperty Name="ApellidoUsuario" ColumnName="ApellidoUsuario" />
+                <ScalarProperty Name="TelefonoUsuario" ColumnName="TelefonoUsuario" />
+                <ScalarProperty Name="DireccionUsuario" ColumnName="DireccionUsuario" />
+                <ScalarProperty Name="RutUsuario" ColumnName="RutUsuario" />
+                <ScalarProperty Name="FechaRegistro" ColumnName="FechaRegistro" />
+                <ScalarProperty Name="CorreoUsuario" ColumnName="CorreoUsuario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Trabajador">
+            <EntityTypeMapping TypeName="ProyectoInacapModel.Trabajador">
+              <MappingFragment StoreEntitySet="Trabajador">
+                <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
+                <ScalarProperty Name="Cargo" ColumnName="Cargo" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="IdTrabajador" ColumnName="IdTrabajador" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Reporte">
+            <EntityTypeMapping TypeName="ProyectoInacapModel.Reporte">
+              <MappingFragment StoreEntitySet="Reporte">
+                <ScalarProperty Name="idEstacionamiento" ColumnName="idEstacionamiento" />
+                <ScalarProperty Name="FechaReporte" ColumnName="FechaReporte" />
+                <ScalarProperty Name="IdReporte" ColumnName="IdReporte" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Bicicleta">
+            <EntityTypeMapping TypeName="ProyectoInacapModel.Bicicleta">
+              <MappingFragment StoreEntitySet="Bicicleta">
+                <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
+                <ScalarProperty Name="ImagenBicicleta" ColumnName="ImagenBicicleta" />
+                <ScalarProperty Name="Modelo" ColumnName="Modelo" />
+                <ScalarProperty Name="Color" ColumnName="Color" />
+                <ScalarProperty Name="Marca" ColumnName="Marca" />
+                <ScalarProperty Name="IdBicicleta" ColumnName="IdBicicleta" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Estacionamiento">
+            <EntityTypeMapping TypeName="ProyectoInacapModel.Estacionamiento">
+              <MappingFragment StoreEntitySet="Estacionamiento">
+                <ScalarProperty Name="idTrabajador" ColumnName="idTrabajador" />
+                <ScalarProperty Name="idBicicleta" ColumnName="idBicicleta" />
+                <ScalarProperty Name="EstacionamientoOcupado" ColumnName="EstacionamientoOcupado" />
+                <ScalarProperty Name="HoraSalida" ColumnName="HoraSalida" />
+                <ScalarProperty Name="HoraEntrada" ColumnName="HoraEntrada" />
+                <ScalarProperty Name="LugarEstacionamiento" ColumnName="LugarEstacionamiento" />
+                <ScalarProperty Name="IdEstacionamiento" ColumnName="IdEstacionamiento" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

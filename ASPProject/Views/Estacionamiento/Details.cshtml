@@ -1,0 +1,66 @@
+﻿@model Conexion.Models.Estacionamiento
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Estacionamiento</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.LugarEstacionamiento)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LugarEstacionamiento)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HoraEntrada)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HoraEntrada)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HoraSalida)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HoraSalida)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EstacionamientoOcupado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EstacionamientoOcupado)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Bicicleta.Marca)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Bicicleta.Marca)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Trabajador.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Trabajador.Nombre)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.IdEstacionamiento }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

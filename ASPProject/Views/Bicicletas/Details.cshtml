@@ -1,0 +1,118 @@
+﻿@model Conexion.Models.Bicicleta
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="~/Content/css/main.css">
+    <link rel="stylesheet" href="~/Content/css/normalize.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="icon" href="~/Content/assets/img/favicon.ico">
+    <link rel="stylesheet" href="~/Content/css/main.css">
+    <script src="https://use.fontawesome.com/releases/v5.13.0/js/all.js" crossorigin="anonymous"></script>
+
+
+    <title>Detalles</title>
+</head>
+
+<div class="burbuja">
+    <div class="burbuja2"></div>
+</div>
+
+
+
+
+<br />
+<br />
+<br />
+<br />
+
+
+<div class="container ">
+    <div class="container text-center ">
+
+
+        <div class="  container-flex ">
+
+
+            <div class=" form ">
+
+
+                <br />
+                <h4 class="text-center">Bicicleta</h4>
+                
+
+
+                <hr />
+                <hr />
+
+
+                <dl class="dl">
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Marca)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Marca)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Color)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Color)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Modelo)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Modelo)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.ImagenBicicleta)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.ImagenBicicleta)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Usuario.NombreUsuario)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Usuario.NombreUsuario)
+                    </dd>
+
+                </dl>
+                <p>
+                    @Html.ActionLink("Editar", "Edit", new { id = Model.IdBicicleta }) |
+                    @Html.ActionLink("Volver", "Index")
+                </p>
+
+
+            </div>
+            <div class="container-formText">
+                <div class="formText">
+
+                    <h2>Detalles Bicicleta</h2>
+
+                </div>
+            </div>
+
+
+        </div>
+            </div>
+            </div>
+
+
+
+
+           
