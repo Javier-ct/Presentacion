@@ -1,15 +1,16 @@
 ﻿@model Conexion.Models.Estacionamiento
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Detalles";
 }
 
-<h2>Details</h2>
+<h2>Detalles</h2>
 
-<div>
-    <h4>Estacionamiento</h4>
+<hr />
+<div class="form container border text-center">
+    <h4 class="text-primary">Estacionamiento</h4>
     <hr />
-    <dl class="dl-horizontal">
+    <dl class="dl ">
         <dt>
             @Html.DisplayNameFor(model => model.LugarEstacionamiento)
         </dt>
@@ -59,8 +60,10 @@
         </dd>
 
     </dl>
+
+    <p>
+        @Html.ActionLink("Editar", "Edit", new { id = Model.IdEstacionamiento }) |
+        @Html.ActionLink("Volver A la Lista", "Index")
+    </p>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.IdEstacionamiento }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+

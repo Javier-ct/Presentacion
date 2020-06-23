@@ -6,9 +6,11 @@
 
 <h2>Delete</h2>
 
-<h3>Are you sure you want to delete this?</h3>
-<div>
-    <h4>Trabajador</h4>
+<br />
+<br />
+<br />
+<div class="form container text-center border">
+    <h4 class="text-primary">Trabajador</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -41,8 +43,8 @@
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+            <input type="submit" value="Delete" class="btn btn-primary" /> |
+            @Html.ActionLink("Volver a la Lista", "Index")
         </div>
     }
 </div>

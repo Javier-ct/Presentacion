@@ -3,7 +3,7 @@
 @{
                 /**/
 
-                ViewBag.Title = "Edit";
+                ViewBag.Title = "Editar Bicicleta";
 }
 
 <head>
@@ -17,7 +17,7 @@
     <script src="https://use.fontawesome.com/releases/v5.13.0/js/all.js" crossorigin="anonymous"></script>
 
 
-    <title>Detalles</title>
+    
 </head>
 
 <div class="burbuja">
@@ -29,6 +29,7 @@
 
 <br />
 <br />
+
 
 
 
@@ -52,7 +53,7 @@
 
 
                 <div class="form-horizontal">
-                    <h4 class="text-center">Bicicleta</h4>
+                    <h4 class="text-center text-primary">Bicicleta</h4>
                     <hr />
                     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                     @Html.HiddenFor(model => model.IdBicicleta)

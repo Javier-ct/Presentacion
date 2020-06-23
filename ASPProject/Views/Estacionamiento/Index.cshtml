@@ -9,7 +9,7 @@
 
 
 
- 
+ <hr />
 
 <p class="text-center">
     @Html.ActionLink("Crear Nuevo Estacionamiento", "Create")
@@ -20,7 +20,7 @@
 
 
 
-<table class="table container">
+<table class="table container ">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.LugarEstacionamiento)
@@ -38,7 +38,7 @@
             @Html.DisplayNameFor(model => model.Bicicleta.IdBicicleta)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Trabajador.Nombre)
+            @Html.DisplayNameFor(model => model.Trabajador.Nombre)-trabajador
         </th>
         <th></th>
     </tr>
@@ -65,9 +65,9 @@
                 @Html.DisplayFor(modelItem => item.Trabajador.Nombre)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.IdEstacionamiento }) |
-                @Html.ActionLink("Details", "Details", new { id = item.IdEstacionamiento }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.IdEstacionamiento })
+                @Html.ActionLink("Editar", "Editar", new { id = item.IdEstacionamiento }) |
+                @Html.ActionLink("Detalles", "Detalles", new { id = item.IdEstacionamiento }) |
+                @Html.ActionLink("Eliminar", "Eliminar", new { id = item.IdEstacionamiento })
             </td>
         </tr>
     }
