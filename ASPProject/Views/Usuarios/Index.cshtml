@@ -4,14 +4,12 @@
     ViewBag.Title = "Index";
 }
 
-<hr />
-<hr />
-<hr />
+<h2>Index</h2>
 
-<p class="text-center border ">
-    @Html.ActionLink("Crear Nuevo Usuario", "Create")
+<p>
+    @Html.ActionLink("Create New", "Create")
 </p>
-<table class="table border">
+<table class="table">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.NombreUsuario)
@@ -33,6 +31,12 @@
         </th>
         <th>
             @Html.DisplayNameFor(model => model.CorreoUsuario)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Contraseña)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RolUsuario)
         </th>
         <th></th>
     </tr>
@@ -61,9 +65,15 @@
             @Html.DisplayFor(modelItem => item.CorreoUsuario)
         </td>
         <td>
-            @Html.ActionLink("Editar", "Edit", new { id=item.IdUsuario }) |
-            @Html.ActionLink("Detalles", "Details", new { id=item.IdUsuario }) |
-            @Html.ActionLink("Eliminar", "Delete", new { id=item.IdUsuario })
+            @Html.DisplayFor(modelItem => item.Contraseña)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RolUsuario)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.IdUsuario }) |
+            @Html.ActionLink("Details", "Details", new { id=item.IdUsuario }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.IdUsuario })
         </td>
     </tr>
 }

@@ -1,16 +1,15 @@
 ﻿@model Conexion.Models.Usuario
 
 @{
-    ViewBag.Title = "Detalles De Bicicleta";
+    ViewBag.Title = "Details";
 }
 
 <h2>Details</h2>
 
-<hr />
-<div class="form container border text-center">
-    <h4 class="text-primary">Detalles del Usuario</h4>
+<div>
+    <h4>Usuario</h4>
     <hr />
-    <dl class="dl">
+    <dl class="dl-horizontal">
         <dt>
             @Html.DisplayNameFor(model => model.NombreUsuario)
         </dt>
@@ -67,13 +66,25 @@
             @Html.DisplayFor(model => model.CorreoUsuario)
         </dd>
 
+        <dt>
+            @Html.DisplayNameFor(model => model.Contraseña)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Contraseña)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RolUsuario)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RolUsuario)
+        </dd>
+
     </dl>
-
-    <hr />
-
-    <p>
-        @Html.ActionLink("Editar", "Edit", new { id = Model.IdUsuario }) |
-        @Html.ActionLink("Volver a la Lista", "Index")
-    </p>
-
 </div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.IdUsuario }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

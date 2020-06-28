@@ -25,10 +25,10 @@ namespace Conexion.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Usuario> Usuario { get; set; }
         public virtual DbSet<Trabajador> Trabajador { get; set; }
         public virtual DbSet<Reporte> Reporte { get; set; }
         public virtual DbSet<Bicicleta> Bicicleta { get; set; }
         public virtual DbSet<Estacionamiento> Estacionamiento { get; set; }
+        public virtual DbSet<Usuario> Usuario { get; set; }
     }
 }

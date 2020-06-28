@@ -5,11 +5,13 @@
 
 }
 
-<h2>Index</h2>
+
 
 
 
  <hr />
+<br />
+<br />
 
 <p class="text-center">
     @Html.ActionLink("Crear Nuevo Estacionamiento", "Create")
@@ -65,9 +67,9 @@
                 @Html.DisplayFor(modelItem => item.Trabajador.Nombre)
             </td>
             <td>
-                @Html.ActionLink("Editar", "Editar", new { id = item.IdEstacionamiento }) |
-                @Html.ActionLink("Detalles", "Detalles", new { id = item.IdEstacionamiento }) |
-                @Html.ActionLink("Eliminar", "Eliminar", new { id = item.IdEstacionamiento })
+                @Html.ActionLink("Editar", "Edit", new { id = item.IdEstacionamiento }) |
+                @Html.ActionLink("Detalles", "Details", new { id = item.IdEstacionamiento }) |
+                @Html.ActionLink("Eliminar", "Delete", new { id = item.IdEstacionamiento })
             </td>
         </tr>
     }

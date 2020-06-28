@@ -140,11 +140,18 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\assets\img\adm.jpg" />
     <Content Include="Content\assets\img\bg-masthead.jpg" />
+    <Content Include="Content\assets\img\bg_2.jpg" />
     <Content Include="Content\assets\img\bici.png" />
     <Content Include="Content\assets\img\BicisCompartidas_Portada-768x512.jpg" />
     <Content Include="Content\assets\img\favicon.ico" />
     <Content Include="Content\assets\img\fondo.jpg" />
+    <Content Include="Content\assets\img\Fondos\bg_1.jpg" />
+    <Content Include="Content\assets\img\Fondos\bg_2.jpg" />
+    <Content Include="Content\assets\img\Fondos\bg_3.jpg" />
+    <Content Include="Content\assets\img\Fondos\bg_4.jpg" />
+    <Content Include="Content\assets\img\Fondos\bg_5.jpg" />
     <Content Include="Content\assets\img\inacapsede.jpg" />
     <Content Include="Content\assets\img\logo.png" />
     <Content Include="Content\assets\img\partes-bicicleta-portada.jpg" />
@@ -175,6 +182,7 @@
     <Content Include="Content\css\all.min.css" />
     <Content Include="Content\css\main.css" />
     <Content Include="Content\css\normalize.css" />
+    <Content Include="Content\css\style.responsive.css" />
     <Content Include="Content\css\styles.css" />
     <Content Include="Content\js\scripts.js" />
     <Content Include="favicon.ico" />
@@ -331,6 +339,7 @@
     <Content Include="Views\Estacionamiento\Details.cshtml" />
     <Content Include="Views\Estacionamiento\Edit.cshtml" />
     <Content Include="Views\Estacionamiento\Index.cshtml" />
+    <Content Include="Views\Usuarios\Administrador.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

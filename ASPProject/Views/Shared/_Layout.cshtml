@@ -32,24 +32,109 @@
 </head>
 <body>
 
-    <nav class="navbar navbar-expand-lg  navbar-light bg-primary fixed-top py-1" id="mainNav">
-        <div class="container">
-            <a class="navbar-brand js-scroll-trigger" href="~/Home">Inacap </a><button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-            <div class="collapse navbar-collapse" id="navbarResponsive">
-                <ul class="navbar-nav ml-auto my-2 my-lg-0">
-                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="~/Estacionamiento">Estacionamiento</a></li>
-                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="~/Bicicletas">Bicicletas</a></li>
-                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="~/Trabajador">Trabajadores </a></li>
-                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="~/Usuarios/Login">Iniciar sesión</a></li>
-                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="~/Usuarios/Registro">Regístrate Gratis</a></li>
-                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#portfolio">nosotros</a></li>
-                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#contact">Contáctanos </a></li>
 
 
-                </ul>
-            </div>
-        </div>
-    </nav>
+
+
+    @{ if (Session["User"] == null)
+        {
+
+            <nav class="navbar navbar-expand-lg  navbar-light bg-primary fixed-top py-1" id="mainNav">
+                <div class="container">
+                    <a class="navbar-brand  js-scroll-trigger" href="~/Home">Inacap </a><button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                    <div class="collapse navbar-collapse" id="navbarResponsive">
+                        <ul class="navbar-nav ml-auto my-2 my-lg-0">
+
+                            <li class="nav-item"><a class="nav-link js-scroll-trigger" href="~/Usuarios/Login">Iniciar sesión</a></li>
+                            <li class="nav-item"><a class="nav-link js-scroll-trigger" href="~/Usuarios/Registro">Regístrate Gratis</a></li>
+                            <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#portfolio">nosotros</a></li>
+                            <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#contact">Contáctanos</a></li>
+
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        }
+        else if (Session["User"] != null & Session["Rol"].Equals("ADM"))
+        {
+
+
+            <nav class="navbar navbar-expand-lg  navbar-light bg-primary fixed-top py-1" id="mainNav">
+                <div class="container">
+                    <a class="navbar-brand  js-scroll-trigger" href="~/Home">Inacap ADMINISTRADOR </a><button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                    <div class="collapse navbar-collapse" id="navbarResponsive">
+                        <ul class="navbar-nav ml-auto my-2 my-lg-0">
+                            <li class="nav-item"><a class="nav-link js-scroll-trigger" href="~/Usuarios/Administrador">Panel de Administración</a></li>
+                            <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#portfolio">nosotros</a></li>
+                            <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#contact">Contáctanos</a></li>
+                            <li class="nav-item"><a class="nav-link js-scroll-trigger" href="@Url.Content("~/Usuarios/cerrar")">Cerrar Sesión</a></li>
+
+
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+
+
+
+
+        }
+        else if (Session["User"] != null & Session["Rol"].Equals("Trabajador"))
+        {
+
+
+            <nav class="navbar navbar-expand-lg  navbar-light bg-primary fixed-top py-1" id="mainNav">
+                <div class="container">
+                    <a class="navbar-brand  js-scroll-trigger" href="~/Home">Inacap Trabajador  "@Session["User"]"</a><button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                    <div class="collapse navbar-collapse" id="navbarResponsive">
+                        <ul class="navbar-nav ml-auto my-2 my-lg-0">
+                            <li class="nav-item"><a class="nav-link js-scroll-trigger" href="~/Estacionamiento">Estacionamiento</a></li>
+                            <li class="nav-item"><a class="nav-link js-scroll-trigger" href="~/Bicicletas">Bicicletas</a></li>
+                            <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#portfolio">nosotros</a></li>
+                            <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#contact">Contáctanos</a></li>
+                            <li class="nav-item"><a class="nav-link js-scroll-trigger" href="@Url.Content("~/Usuarios/cerrar")">Cerrar Sesión</a></li>
+
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+
+
+
+
+        }
+        else if (Session["User"] != null & Session["Rol"].Equals("Cliente"))
+        {
+
+
+            <nav class="navbar navbar-expand-lg  navbar-light bg-primary fixed-top py-1" id="mainNav">
+                <div class="container">
+                    <a class="navbar-brand  js-scroll-trigger" href="~/Home">Inacap Bienvenido "@Session["User"]"</a><button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                    <div class="collapse navbar-collapse" id="navbarResponsive">
+                        <ul class="navbar-nav ml-auto my-2 my-lg-0">
+
+                            <li class="nav-item"><a class="nav-link js-scroll-trigger" href="~/Bicicletas">Bicicletas</a></li>
+                            <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#portfolio">nosotros</a></li>
+                            <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#contact">Contáctanos</a></li>
+                            <li class="nav-item"><a class="nav-link js-scroll-trigger" href="@Url.Content("~/Usuarios/cerrar")">Cerrar Sesión</a></li>
+
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+
+
+
+
+        }
+
+
+
+    }
+
+
+
+
 
 
     <section>@RenderBody()</section>

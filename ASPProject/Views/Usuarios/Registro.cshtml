@@ -37,40 +37,46 @@
 
                     </div>
                     <!-- FORMULARIO FORM/INPUTS -->
-                    <form method="POST">
+                    <form action="@Url.Content("~/Usuarios/JJ")" method="post">
+
                         <div class="inputs">
                             <i class="fas fa-user-circle"></i>
-                            <input type="text" placeholder="Nombres">
+                            <input type="text" name="Nombre" placeholder="Nombres">
                         </div>
 
                         <div class="inputs">
                             <i class="fas fa-user-circle"></i>
-                            <input type="text" placeholder="Apellidos">
+                            <input type="text" name="Apellidos" placeholder="Apellidos">
+                        </div>
+
+                        <div class="inputs">
+                            <i class="fas fa-bars"></i>
+                            <input type="text" name="Direccion" placeholder="Ingrese su Direccion">
                         </div>
 
                         <div class="inputs">
                             <i class="fas fa-phone"></i>
-                            <input type="tel" placeholder="Telefono">
+                            <input type="tel" name="Telefono" placeholder="Telefono">
                         </div>
 
                         <div class="inputs">
                             <i class="fas fa-id-card"></i>
-                            <input type="text" placeholder="Rut">
+                            <input type="number" name="rut" placeholder="Rut">
                         </div>
 
 
                         <div class="inputs">
                             <i class="fas fa-envelope"></i>
-                            <input type="text" placeholder="Correo">
+                            <input type="email" name="email" placeholder="Correo">
                         </div>
 
                         <div class="inputs">
                             <i class="fas fa-lock"></i>
-                            <input type="password" placeholder="Ingresa una Contraseña">
+                            <input type="password" name="pass1" placeholder="Ingresa una Contraseña">
                         </div>
                         <div class="inputs">
                             <i class="fas fa-lock"></i>
-                            <input type="password" placeholder="Repite la Contraseña">
+                            <input type="password" name="pass2" placeholder="Repite la Contraseña">
                         </div>
 
 
@@ -80,7 +86,7 @@
                         <input type="submit" value="Registrate Gratis" class="boton">
                     </form>
                     <div>
-                        <p>Ya estas Registrado? <a href="#">Inicia Sesión</a></p>
+                        <p>Ya estas Registrado? <a href="~/Usuarios/Login">Inicia Sesión</a></p>
 
 
                     </div>

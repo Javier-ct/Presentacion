@@ -12,22 +12,139 @@ namespace ASPProject.Controllers
 {
     public class UsuariosController : Controller
     {
+       
+
         private ProyectoInacapEntities db = new ProyectoInacapEntities();
 
 
 
-        public ActionResult Login()
-        {
+        public ActionResult Administrador() {
+
+
             return PartialView();
         }
 
-      
 
 
         public ActionResult Registro()
         {
+
+
             return PartialView();
         }
+
+        public ActionResult Login()
+        {
+
+            return PartialView();
+        }
+
+        [HttpPost]
+        public ActionResult Login(string User, string Pass)
+        {
+            try
+            {
+
+                var oUser = (from d in db.Usuario
+                             where d.CorreoUsuario == User.Trim() && d.Contraseña == Pass.Trim()
+                             select d).FirstOrDefault();
+                if (oUser == null)
+                {
+                    ViewBag.Error = "Usuario o contraseña invalida";
+                    return View();
+                }
+
+                Session["User"] = oUser.NombreUsuario;
+                Session["Rol"] = oUser.RolUsuario;
+
+
+
+                return RedirectToAction("Index", "Home");
+            }
+            catch (Exception ex)
+            {
+                ViewBag.Error = ex.Message;
+                return View();
+            }
+
+        }
+
+        public ActionResult cerrar() {
+
+
+            Session["User"] = null;
+            Session["Rol"] = null;
+
+            return RedirectToAction("Index","Home");
+        }
+
+
+
+        public ActionResult JJ(string Nombre,string Apellidos,int Telefono,string Direccion,int rut,string email,string pass1,string pass2) {
+
+
+           
+
+            if (ModelState.IsValid)
+            {
+                Usuario usuarioDB = new Usuario();
+
+                if (pass1 == pass2)
+                {
+                    usuarioDB.NombreUsuario = Nombre;
+                    usuarioDB.ApellidoUsuario = Apellidos;
+                    usuarioDB.TelefonoUsuario = Telefono;
+                    usuarioDB.DireccionUsuario = Direccion;
+                    usuarioDB.RutUsuario = rut;
+                    usuarioDB.FechaRegistro = DateTime.Now;
+                    usuarioDB.Contraseña = pass1;
+                    usuarioDB.CorreoUsuario = email;
+                    usuarioDB.RolUsuario = "Cliente";
+
+                 
+                    
+
+                    db.Usuario.Add(usuarioDB);
+
+                    Session["TDO"] = usuarioDB;
+                    Session["User"] = Nombre;
+                    Session["Rol"] = "Cliente";
+                    Session["ID"] = usuarioDB.IdUsuario;
+                    db.SaveChanges();
+                    return RedirectToAction("Index", "Home");
+
+                }
+
+
+
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
+
+
+            return RedirectToAction("Index", "Home");
+
+
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -63,7 +180,7 @@ namespace ASPProject.Controllers
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "IdUsuario,NombreUsuario,ApellidoUsuario,TelefonoUsuario,DireccionUsuario,RutUsuario,FechaRegistro,CorreoUsuario")] Usuario usuario)
+        public ActionResult Create([Bind(Include = "IdUsuario,NombreUsuario,ApellidoUsuario,TelefonoUsuario,DireccionUsuario,RutUsuario,FechaRegistro,CorreoUsuario,Contraseña,RolUsuario")] Usuario usuario)
         {
             if (ModelState.IsValid)
             {
@@ -95,7 +212,7 @@ namespace ASPProject.Controllers
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "IdUsuario,NombreUsuario,ApellidoUsuario,TelefonoUsuario,DireccionUsuario,RutUsuario,FechaRegistro,CorreoUsuario")] Usuario usuario)
+        public ActionResult Edit([Bind(Include = "IdUsuario,NombreUsuario,ApellidoUsuario,TelefonoUsuario,DireccionUsuario,RutUsuario,FechaRegistro,CorreoUsuario,Contraseña,RolUsuario")] Usuario usuario)
         {
             if (ModelState.IsValid)
             {

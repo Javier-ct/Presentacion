@@ -1,0 +1,224 @@
+/* -------------------------------------------------------------------
+ * Plugin Name           : Suscripción - Responsive Modern
+ * Author Name           : Diego Carmona Bernal
+ * Author Web            : https://diegocarmonabernal.com
+ * Created Date          : 23 Junio 2020
+ * Version               : 1.0
+ * File Name             : style.css
+------------------------------------------------------------------- */
+/* ---------------------------------------------------------------- */
+/* Base                               
+/* ---------------------------------------------------------------- */
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body, html {
+  background: url('../assets/img/Fondos/bg_5.jpg')center no-repeat fixed;
+  background-size: cover;
+  background-color: #4A4A4A;
+  font-size: 16px;
+  font-family: sans-serif;
+  font-weight: normal;
+  font-style: normal;
+  color: #45484b;
+ naranjito:#f4623a
+}
+
+.section {
+  margin: 0 auto;
+  margin-top: 35px;
+  width: 80%;
+}
+
+.container {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-evenly;
+}
+
+a:link, a:hover, a:active, a:visited {
+  text-decoration: none;
+  color: #45484b;
+}
+
+ul, ol {
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+}
+
+/* ---------------------------------------------------------------- */
+/* Typography                                                  
+/* ---------------------------------------------------------------- */
+h1, h2 {
+  margin: 0;
+  font-family: sans-serif;
+  font-weight: normal;
+  font-style: normal;
+  color: #fff;
+  line-height: 1.5;
+  text-transform: normal;
+  text-shadow: 2px 3px 4px rgba(0, 0, 0, 0.6);
+}
+
+h1 {
+  font-size: 35px;
+}
+
+h2 {
+  font-size: 22px;
+}
+
+/* ---------------------------------------------------------------- */
+/* Buttons                                                   
+/* ---------------------------------------------------------------- */
+.button {
+    border-radius: 5px;
+    display: inline-block;
+    background-color: #f4623a;
+    border: none;
+    text-align: center;
+    padding: 20px 40px;
+    color: #fff;
+}
+
+/* ---------------------------------------------------------------- */
+/* Title                                           
+/* ---------------------------------------------------------------- */
+.title h1 {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+/* ---------------------------------------------------------------- */
+/* Subscribe                         
+/* ---------------------------------------------------------------- */
+.subscribe {
+  background: #fff;
+  width: 20%;
+  border-radius: 30px;
+  text-align: center;
+  padding: 30px;
+  -webkit-transition: all 0.25s linear;
+  transition: all 0.75s linear;
+  -webkit-box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.18);
+          box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.18);
+}
+
+.subscribe:hover {
+  -webkit-transform: translateY(-10px);
+          transform: translateY(-10px);
+  -webkit-box-shadow: 0 20px 45px 0 rgba(0, 0, 0, 0.18);
+          box-shadow: 0 20px 45px 0 rgba(0, 0, 0, 0.18);
+}
+
+.subscribe .icon {
+  display: inline-block;
+}
+
+.subscribe .icon i {
+  display: inline-block;
+  background: #4285f4;
+  margin-top: 20px;
+  margin-bottom: 30px;
+  height: 40px;
+  width: 150px;
+  text-align: center;
+  line-height: 40px;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 600;
+  color: #fff;
+  border-radius: 5px;
+}
+
+.subscribe .value {
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+.subscribe .value span {
+  font-size: 1rem;
+}
+
+.subscribe .value b {
+  font-size: 2.8rem;
+  font-weight: 700;
+  font-family: "Poppins-Bold", sans-serif;
+  color: #45484b;
+}
+
+.subscribe .list li {
+  margin-top: 10px;
+}
+
+.subscribe .list li:first-child {
+  margin-top: 30px;
+}
+
+.subscribe .list li:last-child {
+  margin-bottom: 50px;
+}
+
+.subscribe .footer {
+  margin-top: 30px;
+}
+
+.subscribe .footer .block-btn {
+  display: block;
+  position: relative;
+  color: white;
+  text-align: center;
+  border-radius: 50px;
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.15), 0 2px 5px rgba(0, 0, 0, 0.1);
+  z-index: 2;
+}
+.subscribe .footer .block-btn:before {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  right: 50%;
+  bottom: 0;
+  opacity: 0;
+  content: '';
+  background-color: #3e70c2;
+  border-radius: 50px;
+  z-index: -1;
+  -webkit-transition: 200ms all ease;
+  transition: 200ms all ease;
+}
+
+.subscribe .footer .block-btn:hover:before {
+  left: 0;
+  right: 0;
+  opacity: 1;
+  -webkit-transition: 300ms all ease;
+  transition: 300ms all ease;
+}
+
+@media (max-width: 1300px) {
+  .subscribe {
+    width: 22%;
+  }
+}
+
+@media (max-width: 1024px) {
+  .subscribe {
+    width: 23%;
+  }
+}
+
+@media (max-width: 900px) {
+  .subscribe {
+    width: 60%;
+  }
+
+  .subscribe {
+    margin-top: 35px;
+  }
+  div:first-of-type.subscribe {
+    margin-top: 0;
+  }
+}

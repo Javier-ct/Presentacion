@@ -57,6 +57,8 @@
           <Property Name="RutUsuario" Type="int" Nullable="false" />
           <Property Name="FechaRegistro" Type="date" Nullable="false" />
           <Property Name="CorreoUsuario" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Contraseña" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="RolUsuario" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <Association Name="FK_Bicicleta_Usuario">
           <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
@@ -149,34 +151,10 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ProyectoInacapModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="Usuario">
-          <Key>
-            <PropertyRef Name="IdUsuario" />
-          </Key>
-          <Property Name="IdUsuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="NombreUsuario" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="ApellidoUsuario" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="TelefonoUsuario" Type="Int32" Nullable="false" />
-          <Property Name="DireccionUsuario" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="RutUsuario" Type="Int32" Nullable="false" />
-          <Property Name="FechaRegistro" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="CorreoUsuario" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Trabajador" Relationship="ProyectoInacapModel.FK_Trabajador_Usuario" FromRole="Usuario" ToRole="Trabajador" />
-          <NavigationProperty Name="Bicicleta" Relationship="ProyectoInacapModel.FK_Bicicleta_Usuario" FromRole="Usuario" ToRole="Bicicleta" />
-        </EntityType>
         <EntityContainer Name="ProyectoInacapEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Usuario" EntityType="Self.Usuario" />
           <EntitySet Name="Trabajador" EntityType="ProyectoInacapModel.Trabajador" />
-          <AssociationSet Name="FK_Trabajador_Usuario" Association="ProyectoInacapModel.FK_Trabajador_Usuario">
-            <End Role="Usuario" EntitySet="Usuario" />
-            <End Role="Trabajador" EntitySet="Trabajador" />
-          </AssociationSet>
           <EntitySet Name="Reporte" EntityType="ProyectoInacapModel.Reporte" />
           <EntitySet Name="Bicicleta" EntityType="ProyectoInacapModel.Bicicleta" />
-          <AssociationSet Name="FK_Bicicleta_Usuario" Association="ProyectoInacapModel.FK_Bicicleta_Usuario">
-            <End Role="Usuario" EntitySet="Usuario" />
-            <End Role="Bicicleta" EntitySet="Bicicleta" />
-          </AssociationSet>
           <EntitySet Name="Estacionamiento" EntityType="ProyectoInacapModel.Estacionamiento" />
           <AssociationSet Name="FK_Estacionamiento_Bicicleta" Association="ProyectoInacapModel.FK_Estacionamiento_Bicicleta">
             <End Role="Bicicleta" EntitySet="Bicicleta" />
@@ -190,7 +168,16 @@
             <End Role="Estacionamiento" EntitySet="Estacionamiento" />
             <End Role="Reporte" EntitySet="Reporte" />
           </AssociationSet>
-        </EntityContainer>
+          <EntitySet Name="Usuario" EntityType="ProyectoInacapModel.Usuario" />
+          <AssociationSet Name="FK_Bicicleta_Usuario" Association="ProyectoInacapModel.FK_Bicicleta_Usuario">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Bicicleta" EntitySet="Bicicleta" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Trabajador_Usuario" Association="ProyectoInacapModel.FK_Trabajador_Usuario">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Trabajador" EntitySet="Trabajador" />
+          </AssociationSet>
+          </EntityContainer>
         <EntityType Name="Trabajador">
           <Key>
             <PropertyRef Name="IdTrabajador" />
@@ -199,21 +186,9 @@
           <Property Name="Nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Cargo" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="idUsuario" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Usuario" Relationship="ProyectoInacapModel.FK_Trabajador_Usuario" FromRole="Trabajador" ToRole="Usuario" />
           <NavigationProperty Name="Estacionamiento" Relationship="ProyectoInacapModel.FK_Estacionamiento_Trabajador" FromRole="Trabajador" ToRole="Estacionamiento" />
+          <NavigationProperty Name="Usuario" Relationship="ProyectoInacapModel.FK_Trabajador_Usuario" FromRole="Trabajador" ToRole="Usuario" />
         </EntityType>
-        <Association Name="FK_Trabajador_Usuario">
-          <End Type="ProyectoInacapModel.Usuario" Role="Usuario" Multiplicity="1" />
-          <End Type="ProyectoInacapModel.Trabajador" Role="Trabajador" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Usuario">
-              <PropertyRef Name="IdUsuario" />
-            </Principal>
-            <Dependent Role="Trabajador">
-              <PropertyRef Name="idUsuario" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityType Name="Reporte">
           <Key>
             <PropertyRef Name="IdReporte" />
@@ -233,21 +208,9 @@
           <Property Name="Modelo" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="ImagenBicicleta" Type="Binary" MaxLength="Max" FixedLength="false" />
           <Property Name="idUsuario" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Usuario" Relationship="ProyectoInacapModel.FK_Bicicleta_Usuario" FromRole="Bicicleta" ToRole="Usuario" />
           <NavigationProperty Name="Estacionamiento" Relationship="ProyectoInacapModel.FK_Estacionamiento_Bicicleta" FromRole="Bicicleta" ToRole="Estacionamiento" />
+          <NavigationProperty Name="Usuario" Relationship="ProyectoInacapModel.FK_Bicicleta_Usuario" FromRole="Bicicleta" ToRole="Usuario" />
         </EntityType>
-        <Association Name="FK_Bicicleta_Usuario">
-          <End Type="ProyectoInacapModel.Usuario" Role="Usuario" Multiplicity="1" />
-          <End Type="ProyectoInacapModel.Bicicleta" Role="Bicicleta" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Usuario">
-              <PropertyRef Name="IdUsuario" />
-            </Principal>
-            <Dependent Role="Bicicleta">
-              <PropertyRef Name="idUsuario" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityType Name="Estacionamiento">
           <Key>
             <PropertyRef Name="IdEstacionamiento" />
@@ -299,26 +262,53 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="IdUsuario" />
+          </Key>
+          <Property Name="IdUsuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NombreUsuario" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ApellidoUsuario" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TelefonoUsuario" Type="Int32" Nullable="false" />
+          <Property Name="DireccionUsuario" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="RutUsuario" Type="Int32" Nullable="false" />
+          <Property Name="FechaRegistro" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="CorreoUsuario" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Contraseña" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="RolUsuario" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Bicicleta" Relationship="ProyectoInacapModel.FK_Bicicleta_Usuario" FromRole="Usuario" ToRole="Bicicleta" />
+          <NavigationProperty Name="Trabajador" Relationship="ProyectoInacapModel.FK_Trabajador_Usuario" FromRole="Usuario" ToRole="Trabajador" />
+        </EntityType>
+        <Association Name="FK_Bicicleta_Usuario">
+          <End Type="ProyectoInacapModel.Usuario" Role="Usuario" Multiplicity="1" />
+          <End Type="ProyectoInacapModel.Bicicleta" Role="Bicicleta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IdUsuario" />
+            </Principal>
+            <Dependent Role="Bicicleta">
+              <PropertyRef Name="idUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Trabajador_Usuario">
+          <End Type="ProyectoInacapModel.Usuario" Role="Usuario" Multiplicity="1" />
+          <End Type="ProyectoInacapModel.Trabajador" Role="Trabajador" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IdUsuario" />
+            </Principal>
+            <Dependent Role="Trabajador">
+              <PropertyRef Name="idUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="ProyectoInacapModelStoreContainer" CdmEntityContainer="ProyectoInacapEntities">
-          <EntitySetMapping Name="Usuario">
-            <EntityTypeMapping TypeName="ProyectoInacapModel.Usuario">
-              <MappingFragment StoreEntitySet="Usuario">
-                <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
-                <ScalarProperty Name="NombreUsuario" ColumnName="NombreUsuario" />
-                <ScalarProperty Name="ApellidoUsuario" ColumnName="ApellidoUsuario" />
-                <ScalarProperty Name="TelefonoUsuario" ColumnName="TelefonoUsuario" />
-                <ScalarProperty Name="DireccionUsuario" ColumnName="DireccionUsuario" />
-                <ScalarProperty Name="RutUsuario" ColumnName="RutUsuario" />
-                <ScalarProperty Name="FechaRegistro" ColumnName="FechaRegistro" />
-                <ScalarProperty Name="CorreoUsuario" ColumnName="CorreoUsuario" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Trabajador">
             <EntityTypeMapping TypeName="ProyectoInacapModel.Trabajador">
               <MappingFragment StoreEntitySet="Trabajador">
@@ -360,6 +350,22 @@
                 <ScalarProperty Name="HoraEntrada" ColumnName="HoraEntrada" />
                 <ScalarProperty Name="LugarEstacionamiento" ColumnName="LugarEstacionamiento" />
                 <ScalarProperty Name="IdEstacionamiento" ColumnName="IdEstacionamiento" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Usuario">
+            <EntityTypeMapping TypeName="ProyectoInacapModel.Usuario">
+              <MappingFragment StoreEntitySet="Usuario">
+                <ScalarProperty Name="RolUsuario" ColumnName="RolUsuario" />
+                <ScalarProperty Name="Contraseña" ColumnName="Contraseña" />
+                <ScalarProperty Name="CorreoUsuario" ColumnName="CorreoUsuario" />
+                <ScalarProperty Name="FechaRegistro" ColumnName="FechaRegistro" />
+                <ScalarProperty Name="RutUsuario" ColumnName="RutUsuario" />
+                <ScalarProperty Name="DireccionUsuario" ColumnName="DireccionUsuario" />
+                <ScalarProperty Name="TelefonoUsuario" ColumnName="TelefonoUsuario" />
+                <ScalarProperty Name="ApellidoUsuario" ColumnName="ApellidoUsuario" />
+                <ScalarProperty Name="NombreUsuario" ColumnName="NombreUsuario" />
+                <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

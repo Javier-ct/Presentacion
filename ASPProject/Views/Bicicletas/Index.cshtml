@@ -40,7 +40,9 @@
     <br />
     <br />
     <br />
-    <p class="text-center"> @Html.ActionLink("Crear nueva Bicicleta", "Create")</p>
+
+    <h2>@Session["User"]</h2>
+    <p class="text-center"> @Html.ActionLink("Crear nueva Bicicleta ", "Create")</p>
 
     
 
@@ -51,10 +53,7 @@
         <table class="table   bg-white container  container-center border">
             <tr>
 
-               
-
-
-
+              
                 <th>
                     @Html.DisplayNameFor(model => model.Marca)
                 </th>
