@@ -14,21 +14,24 @@ namespace ASPProject.Controllers
     {
         private ProyectoInacapEntities db = new ProyectoInacapEntities();
 
-       
-        
+
+      
+
+
         // GET: Bicicletas
         public ActionResult Index()
         {
+            
+
+         int id  = 3// Session["ID"];
+          
+
+            //? como lo puedo recuperar si lo genere en otro controlador
 
 
 
-            // Session["ID"] = 7;
-            //  int ID = (int)(Session["ID"]);
 
-            Session["ID"];//? como lo puedo recuperar si lo genere en otro controlador
-
-
-            List<Bicicleta> listado = db.Bicicleta.Where(x => x.idUsuario == ID).ToList();
+            List<Bicicleta> listado = db.Bicicleta.Where(x => x.idUsuario == id).ToList();
 
          
             return View(listado);
